@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "456781215196",
+    "project_id": "chatapp-cf5a3",
+    "storage_bucket": "chatapp-cf5a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456781215196:android:06781bb0597357e4738b19",
+        "android_client_info": {
+          "package_name": "com.isilsubasi.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456781215196-df7jpldqjljaq902lppalhs2bcavcc4j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.isilsubasi.chatapp",
+            "certificate_hash": "48256ee7443b9d4a8220a3bec0f55b2172cd45b0"
+          }
+        },
+        {
+          "client_id": "456781215196-tjin7odre1i7p8lu0o1l860cee0ngr3f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhT-l6lNHoM0Iw_xT1Q7b8ZOi7-AVsUP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "456781215196-tjin7odre1i7p8lu0o1l860cee0ngr3f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
