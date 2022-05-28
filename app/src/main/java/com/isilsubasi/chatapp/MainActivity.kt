@@ -34,7 +34,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding= ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         init()
 
 
@@ -49,8 +51,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun configureGoogleSignIn(){
 
-        val googleSignInOptions=GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN)
-            .requestIdToken(R.string.default_web_client_id)
+        val googleSignInOptions=GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
 
@@ -76,7 +78,12 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun checkUser(){
-
+         //check if user is logged in or not
+        val firebaseUser=firebaseAuth.currentUser
+        if (firebaseUser!=null){
+            startActivity(Intent(this@MainActivity,DetailActivity::class.java))
+            finish()
+        }
 
 
     }
@@ -136,7 +143,8 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 //start profile activity
-
+                startActivity(Intent(this@MainActivity,DetailActivity::class.java))
+                finish()
 
             }
 
