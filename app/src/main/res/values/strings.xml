@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ChatApp</string>
+    <string name="logout">Logout</string>
+    <string name="test_email">isil.subasi@</string>
 </resources>

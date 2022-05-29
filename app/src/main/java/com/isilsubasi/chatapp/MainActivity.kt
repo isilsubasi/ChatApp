@@ -11,8 +11,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthCredential
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.isilsubasi.chatapp.databinding.ActivityMainBinding
 import java.lang.Exception
 
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var googleSignInClient : GoogleSignInClient
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var mDbRef : DatabaseReference
 
     //constants
     private companion object{
@@ -45,6 +47,7 @@ class MainActivity : AppCompatActivity() {
     private fun init(){
 
         configureGoogleSignIn()
+        onClickListener()
     }
 
 
@@ -59,9 +62,6 @@ class MainActivity : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this,googleSignInOptions)
         firebaseAuth= FirebaseAuth.getInstance()
         checkUser()
-        onClickListener()
-
-
 
     }
 
@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
          //check if user is logged in or not
         val firebaseUser=firebaseAuth.currentUser
         if (firebaseUser!=null){
-            startActivity(Intent(this@MainActivity,DetailActivity::class.java))
+            startActivity(Intent(this@MainActivity,HomeActivity::class.java))
             finish()
         }
 
@@ -143,7 +143,8 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 //start profile activity
-                startActivity(Intent(this@MainActivity,DetailActivity::class.java))
+                email?.let { addUserToDatabase(it,uid) }
+                startActivity(Intent(this@MainActivity,HomeActivity::class.java))
                 finish()
 
             }
@@ -152,6 +153,14 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG,"firebaseAuthWithGoogleAccount : Loggin failed due to ${e.message}")
                 Toast.makeText(this@MainActivity,"Loggin failed due to ${e.message} ",Toast.LENGTH_LONG).show()
             }
+
+    }
+
+    private fun addUserToDatabase(email: String, uid: String) {
+
+        mDbRef=FirebaseDatabase.getInstance().getReference()
+        mDbRef.child("user").child(uid).setValue(User(email,uid))
+
 
     }
 
